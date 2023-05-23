@@ -10,6 +10,13 @@ const forecast = async (location = 'Manzanillo, Col.') => {
 }
 
 const renderforecastData = (data) => {
+  console.log(data.current.is_day)
+  const body = document.querySelector('body')
+  if(data.current.is_day == 1) {
+    body.style.backgroundImage = 'url("./images/sunySky.jpg")'
+  } else {
+    body.style.backgroundImage = 'url("./images/moonSky.jpg")'
+  }
   const header = document.querySelector('.header')
   header.classList.add('.header')
 
@@ -73,4 +80,4 @@ const renderforecastData = (data) => {
   windCard.appendChild(windDirectionElement)
 
 }
-window.onload = forecast()
+window.onload = forecast('manzanillo, col')
