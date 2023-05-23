@@ -6,23 +6,45 @@ const forecast = async (location = 'Manzanillo, Col.') => {
     renderforecastData(data)
   } catch (error) {
     console.log(error)
+    forecast('London')
   }
 }
 
 const renderforecastData = (data) => {
   console.log(data.current.is_day)
   const body = document.querySelector('body')
+  const main = document.querySelector('.main')
   if(data.current.is_day == 1) {
     body.style.backgroundImage = 'url("./images/sunySky.jpg")'
   } else {
     body.style.backgroundImage = 'url("./images/moonSky.jpg")'
   }
   const header = document.querySelector('.header')
-  header.classList.add('.header')
 
+  const formGroup = document.createElement('div')
+  formGroup.classList.add('.formGroup')
+  const locationInput = document.createElement('input')
+  locationInput.classList.add('locationInput')
+  locationInput.placeholder = 'Portland, Oregon'
+  const confirmBtn = document.createElement('button')
+  confirmBtn.classList.add('confirmBtn')
+  confirmBtn.textContent = '✔️'
+  confirmBtn.addEventListener('click', () => {
+    header.innerHTML = ''
+    confortCard.innerHTML = ''
+    windCard.innerHTML = ''
+    forecast(locationInput.value)
+  })
+
+  formGroup.appendChild(locationInput)
+  formGroup.appendChild(confirmBtn)
+  
   const locationContainder = document.createElement('p')
   locationContainder.classList.add('.locationContainer')
-  locationContainder.textContent = `${data.location.name} 📌️`
+  locationContainder.textContent = `🔎️ ${data.location.name} 📌️`
+  locationContainder.addEventListener('click', () => {
+    locationContainder.replaceWith(formGroup)
+  })
  
   const tempContainer = document.createElement('p')
   tempContainer.classList.add('.tempContainer')
@@ -80,4 +102,4 @@ const renderforecastData = (data) => {
   windCard.appendChild(windDirectionElement)
 
 }
-window.onload = forecast('manzanillo, col')
+window.onload = forecast('Portland, or')
