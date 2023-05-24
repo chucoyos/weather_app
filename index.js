@@ -1,6 +1,6 @@
 const forecast = async (location = 'Manzanillo, Col.') => {
   try {
-    const forecastData = await fetch(`http://api.weatherapi.com/v1/current.json?key=a8f16b8f827948f99f2214058232005&q=${location}&aqi=no`)
+    const forecastData = await fetch(`https://api.weatherapi.com/v1/current.json?key=a8f16b8f827948f99f2214058232005&q=${location}&aqi=no`)
     const data = await forecastData.json()
     console.log(data)
     renderforecastData(data)
@@ -101,4 +101,4 @@ const renderforecastData = (data) => {
   windCard.appendChild(windDirectionElement)
 
 }
-window.onload = forecast('Portland, or')
+forecast('Portland, or')
