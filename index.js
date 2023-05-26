@@ -30,9 +30,9 @@ const renderforecastData = (data) => {
   confirmBtn.textContent = '✔️'
   confirmBtn.addEventListener('click', () => {
     header.innerHTML = ''
-    confortCard.innerHTML = ''
+    comfortCard.innerHTML = ''
     windCard.innerHTML = ''
-    forecast(locationInput.value)
+    forecast(locationInput.value) 
   })
 
   formGroup.appendChild(locationInput)
@@ -61,14 +61,14 @@ const renderforecastData = (data) => {
   header.appendChild(conditionImage)
   header.appendChild(conditionContainer)
 
-  const confortCard = document.querySelector('.confortCard')
+  const comfortCard = document.querySelector('.comfortCard')
 
-  const confortHeader = document.createElement('header')
-  confortHeader.classList.add('confortHeader')
+  const comfortHeader = document.createElement('header')
+  comfortHeader.classList.add('comfortHeader')
 
-  const confortTitle = document.createElement('p')
-  confortTitle.classList.add('confortTitle')
-  confortTitle.textContent = 'CONFORT LEVEL'
+  const comfortTitle = document.createElement('p')
+  comfortTitle.classList.add('comfortTitle')
+  comfortTitle.textContent = 'COMFORT LEVEL'
   const humidityText = document.createElement('p')
   humidityText.classList.add('humidityText')
   humidityText.textContent = `Humidity: ${data.current.humidity} %`
@@ -76,10 +76,10 @@ const renderforecastData = (data) => {
   humidityIcon.classList.add('humidityIcon')
   humidityIcon.textContent = '💦️'
 
-  confortHeader.appendChild(confortTitle)
-  confortCard.appendChild(confortHeader)
-  confortCard.appendChild(humidityIcon)
-  confortCard.appendChild(humidityText)
+  comfortHeader.appendChild(comfortTitle)
+  comfortCard.appendChild(comfortHeader)
+  comfortCard.appendChild(humidityIcon)
+  comfortCard.appendChild(humidityText)
 
   const windCard = document.querySelector('.windCard')
   const windTitle = document.createElement('p')
@@ -101,4 +101,4 @@ const renderforecastData = (data) => {
   windCard.appendChild(windDirectionElement)
 
 }
-forecast('Portland, or')
+forecast('Manzanillo, col')
