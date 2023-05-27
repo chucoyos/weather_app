@@ -1,5 +1,5 @@
 if(localStorage.getItem('location') == null) {
-  localStorage.setItem('location', 'London, England')
+  localStorage.setItem('location', 'London')
 }
 const forecast = async (loc) => {
   try {
@@ -64,7 +64,6 @@ const renderforecastData = (data) => {
   const conditionImage = document.createElement('img')
   conditionImage.src = data.current.condition.icon
 
-  header.appendChild(dateContainer)
   header.appendChild(locationContainer)
   header.appendChild(tempContainer)
   header.appendChild(conditionImage)
@@ -111,6 +110,7 @@ const renderforecastData = (data) => {
   windCard.appendChild(windIcon)
   windCard.appendChild(windSpeedElement)
   windCard.appendChild(windDirectionElement)
+  windCard.appendChild(dateContainer)
 
 }
 forecast(localStorage.getItem('location'))
