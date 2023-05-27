@@ -6,9 +6,7 @@ const forecast = async (loc) => {
     const forecastData = await fetch(`https://api.weatherapi.com/v1/current.json?key=a8f16b8f827948f99f2214058232005&q=${loc}&aqi=no`)
     const data = await forecastData.json()
     renderforecastData(data)
-    console.log(data.current.last_updated)
   } catch (error) {
-    console.log(error)
     forecast('London')
     localStorage.setItem('location', 'London')
   }
