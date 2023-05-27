@@ -1,12 +1,16 @@
-const forecast = async (location) => {
+if(localStorage.getItem('location') == null) {
+  localStorage.setItem('location', 'London, England')
+}
+// console.log(loc)
+const forecast = async (loc) => {
   try {
-    const forecastData = await fetch(`https://api.weatherapi.com/v1/current.json?key=a8f16b8f827948f99f2214058232005&q=${location}&aqi=no`)
+    const forecastData = await fetch(`https://api.weatherapi.com/v1/current.json?key=a8f16b8f827948f99f2214058232005&q=${loc}&aqi=no`)
     const data = await forecastData.json()
-    console.log(data)
     renderforecastData(data)
   } catch (error) {
     console.log(error)
-    forecast('Manzanillo, Mexico')
+    forecast('London')
+    localStorage.setItem('location', 'London')
   }
 }
 
@@ -33,7 +37,8 @@ const renderforecastData = (data) => {
     header.innerHTML = ''
     comfortCard.innerHTML = ''
     windCard.innerHTML = ''
-    forecast(locationInput.value) 
+    forecast(locationInput.value)
+    localStorage.setItem('location', locationInput.value)
   })
 
   formGroup.appendChild(locationInput)
@@ -66,7 +71,10 @@ const renderforecastData = (data) => {
 
   const comfortHeader = document.createElement('header')
   comfortHeader.classList.add('comfortHeader')
-
+  if(localStorage.getItem('location') == null) {
+    localStorage.setItem('location', 'London, England')
+  }
+  const loc = localStorage.getItem('location')
   const comfortTitle = document.createElement('p')
   comfortTitle.classList.add('comfortTitle')
   comfortTitle.textContent = 'COMFORT LEVEL'
@@ -102,4 +110,6 @@ const renderforecastData = (data) => {
   windCard.appendChild(windDirectionElement)
 
 }
-forecast('London, England')
+forecast(localStorage.getItem('location'))
+
+
