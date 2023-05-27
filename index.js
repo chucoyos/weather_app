@@ -25,6 +25,7 @@ const renderforecastData = (data) => {
   const locationInput = document.createElement('input')
   locationInput.classList.add('locationInput')
   locationInput.placeholder = 'Portland, Oregon'
+  locationInput.autofocus = true
   const confirmBtn = document.createElement('button')
   confirmBtn.classList.add('confirmBtn')
   confirmBtn.textContent = '✔️'
