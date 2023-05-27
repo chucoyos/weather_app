@@ -6,6 +6,7 @@ const forecast = async (loc) => {
     const forecastData = await fetch(`https://api.weatherapi.com/v1/current.json?key=a8f16b8f827948f99f2214058232005&q=${loc}&aqi=no`)
     const data = await forecastData.json()
     renderforecastData(data)
+    console.log(data.current.last_updated)
   } catch (error) {
     console.log(error)
     forecast('London')
@@ -52,7 +53,11 @@ const renderforecastData = (data) => {
  
   const tempContainer = document.createElement('p')
   tempContainer.classList.add('tempContainer')
-  tempContainer.textContent = data.current.temp_c + " \260C  /  " + data.current.temp_f + " \260F" 
+  tempContainer.textContent = data.current.temp_c + " \260C  /  " + data.current.temp_f + " \260F"
+
+  const dateContainer = document.createElement('p')
+  dateContainer.classList.add('dateContainer')
+  dateContainer.textContent = '🕛️ ' + data.current.last_updated
 
   const conditionContainer = document.createElement('p')
   conditionContainer.classList.add('conditionContainer')
@@ -61,6 +66,7 @@ const renderforecastData = (data) => {
   const conditionImage = document.createElement('img')
   conditionImage.src = data.current.condition.icon
 
+  header.appendChild(dateContainer)
   header.appendChild(locationContainer)
   header.appendChild(tempContainer)
   header.appendChild(conditionImage)

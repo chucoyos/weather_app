@@ -117,3 +117,6 @@ p {
 .confirmBtn:hover {
   opacity: .33;
 }
+.dateContainer {
+  font-size: medium;
+}
